@@ -10,7 +10,13 @@ import Src.Skill.SkillObject as SkillObject
 
 def Read(setting):
     # Paste
-    _copiedCraftHistory = pyperclip.paste()
+    # Final Fantasy XIV use "\r" as line break inside game
+    # My Regex use "\n" and I don't know how to do "\r" version regex
+    # This patch convert all exist "\r" to "\n" to keep regex work
+    # My "\r" version regex not work may also related to how I parse a line
+    # -- use io.StringIO which only support "\n"
+    # so it read all text in one line then give to regex to let it not work as usual.
+    _copiedCraftHistory = pyperclip.paste().replace("\r", "\n")
 
     # Convert pasted string to read line buffer
     _readLineBuffer = io.StringIO(_copiedCraftHistory)
