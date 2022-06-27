@@ -17,8 +17,10 @@ def PrintResult(setting, skillSequence, totalQuality, totalDurability, totalProg
             macroLineBuffer += skill.ToMacroString()
             totalSkillTime += int(skill.CastCost)
 
+            # Every 15 line, add an empty line as warning
             if (skillIndex + 1) % setting.MacroSize == 0:
-                macroLineBuffer += "\n"
+                # Paste "\n" string directly will not work
+                macroLineBuffer += setting.NewLineInResult
 
         # Copy macro to clipboard
         pyperclip.copy(macroLineBuffer)

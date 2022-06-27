@@ -16,7 +16,7 @@ def Read(setting):
     # My "\r" version regex not work may also related to how I parse a line
     # -- use io.StringIO which only support "\n"
     # so it read all text in one line then give to regex to let it not work as usual.
-    _copiedCraftHistory = pyperclip.paste().replace("\r", "\n")
+    _copiedCraftHistory = pyperclip.paste().replace(setting.NewLineInCopiedText, setting.NewLineInCopiedTextReplaceAs)
 
     # Convert pasted string to read line buffer
     _readLineBuffer = io.StringIO(_copiedCraftHistory)
@@ -50,9 +50,9 @@ def Read(setting):
 
         # Action to result depending on result type
         if resultType == Enum.SearchTypeEnum.GcdSkill:
-            skillSequence.append(SkillObject.Skill(result, setting.GcdSkillCastCost))
+            skillSequence.append(SkillObject.Skill(setting, result, setting.GcdSkillCastCost))
         if resultType == Enum.SearchTypeEnum.oGcdSkill:
-            skillSequence.append(SkillObject.Skill(result, setting.oGcdSkillCastCost))
+            skillSequence.append(SkillObject.Skill(setting, result, setting.oGcdSkillCastCost))
         if resultType == Enum.SearchTypeEnum.Quality:
             totalQuality += result
         if resultType == Enum.SearchTypeEnum.DurabilityCost:

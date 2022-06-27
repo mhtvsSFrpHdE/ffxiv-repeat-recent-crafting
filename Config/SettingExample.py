@@ -20,3 +20,13 @@ ProgressRegex = r"(?<=作业进展了 )(.*)(?=点)"
 # Macro size
 # In Final Fantasy XIV, each macro has a maximum size of 15 lines by default.
 MacroSize = 15
+
+# New line character during parse
+NewLineInCopiedText = "\r"
+
+# The one can be empty depending on your platform
+NewLineInCopiedTextReplaceAs = "\n"
+
+# New line character in final result
+# Simple \n will not be recognized by game
+NewLineInResult = "\r\n"
